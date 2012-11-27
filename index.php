@@ -7,6 +7,6 @@
 	</head>
 	<body>
 		Hello world!
-		Hello again!
+		Goodbye!
 	</body>
 </html>
