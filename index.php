@@ -10,6 +10,8 @@
 		Hello yet again!
 		Goodbye!
 		
+		more edits in master
+		
 		in master
 	</body>
 </html>
