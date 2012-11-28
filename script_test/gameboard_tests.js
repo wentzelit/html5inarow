@@ -7,5 +7,5 @@ test('the starting point of a line is at its expected place', function() {
 	
 	drawLine(canvasId, 0, 0, 200, 0);
 	
-	
+	 asdfasdf
 });
