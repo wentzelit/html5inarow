@@ -9,9 +9,6 @@
 		Hello world!
 		Hello yet again!
 		Goodbye!
-		
-		more edits in master
-		
-		in master
+		Goodbye again!
 	</body>
 </html>
