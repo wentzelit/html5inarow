@@ -1,15 +1,38 @@
-module('Logic');
+module('Logic - Game');
 test('There is a game object', function() {
 	var game = new Game();
 	
-	ok(game);
+	ok(game instanceof Game);
 });
 
+test('A new game has two players', function() {
+	var game = new Game();
+	
+	equal(game.players.length, 2);
+});
+
+test('A new game has a grid model', function() {
+	var game = new Game();
+	
+	ok(game.gridModel instanceof GridModel);
+});
+
+
+test('A new game has a cross token type', function() {
+	var game = new Game();
+	
+	ok(game.tokenTypes.cross instanceof TokenType);
+});
+
+module('Logic - Player');
 test('There is a player object', function() {
 	var player = new Player();
 	
-	ok(player);
+	ok(player instanceof Player);
 });
+
+
+
 
 //module('canvas');
 //test('there is a canvas', function() {

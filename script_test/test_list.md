@@ -2,29 +2,40 @@ Tests to write
 ==============
 Game logic
 ------
-~~there is a game object~~
-there is a player object
-the game has two players
-it's someones turn
-the game has a grid model
-a token can be added to grid model
-game ends when there are five tokens of the same kind in a row
-the player that has five tokens in a row wins the game
-a token can't be placed on another token
-a token must be placed next to another token
-the first token can be placed anywhere
-a token can be placed on an empty cell
-after a token is placed the it's the other players turn
+-~~there is a game object~~
+-~~there is a player object~~
+-~~A new game has two players~~
+-The player in the game are in a dictionary
+-it's someones turn
 
+-~~A new game has a grid model~~
+-There is a token object
+- A new token is either of tokentype circle or cross
+- A new player has one of the token types
+- The token types of the two players cannot be the same
+- ~~A new game has a cross token type~~
+- ~~A new game has a circle token type~~
+- ~~Make TokenTypes static~~
+-a token can be added to grid model
+-game ends when there are five tokens of the same kind in a row
+-the player that has five tokens in a row wins the game
+-a token can't be placed on another token
+-a token must be placed next to another token
+-the first token can be placed anywhere
+-a token can be placed on an empty cell
+-after a token is placed the it's the other players turn
 
+GUI
+----
+-The names of the two players are different
 
 Canvas
 ------
-is there a canvas?
-is there a grid on the canvas?
-is there a horizontal line on y=0?
-is there a vertical line on x=0?
-is the starting point of the line where it should be?
+-is there a canvas?
+-is there a grid on the canvas?
+-is there a horizontal line on y=0?
+-is there a vertical line on x=0?
+-is the starting point of the line where it should be?
 
 Finished tests
 ==============
