@@ -1,4 +1,4 @@
-module('javascript');
+module('Javascript');
 test('empty string equal to false', function() {
 	equal('', false);
 });
@@ -21,4 +21,21 @@ test('!undefined === true', function() {
 
 test('undefined !== null', function() {
 	ok(undefined !== null);
+});
+
+test('new object of type1 is instanceof type1', function() {
+	function type1() {}
+	
+	var obj1 = new type1();
+	
+	ok(obj1 instanceof type1);
+});
+
+test('new object of type1 is not instanceof type2', function() {
+	function type1() {}
+	function type2() {}
+	
+	var obj1 = new type1();
+	
+	ok(obj1 instanceof type2 === false);
 });
