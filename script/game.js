@@ -1,0 +1,7 @@
+function Game() {
+	
+}
+
+function Player() {
+	
+}

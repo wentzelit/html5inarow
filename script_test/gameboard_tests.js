@@ -1,3 +1,25 @@
+module('Logic');
+test('There is a game object', function() {
+	var game = new Game();
+	
+	ok(game);
+});
+
+test('There is a player object', function() {
+	var player = new Player();
+	
+	ok(player);
+});
+
+//module('canvas');
+//test('there is a canvas', function() {
+//	
+//	ok(true);
+//});
+
+
+
+/*
 test('the starting point of a line is at its expected place', function() {
 
 	var canvasId = 'canvasId';
@@ -7,3 +29,4 @@ test('the starting point of a line is at its expected place', function() {
 	
 	drawLine(canvasId, 0, 0, 200, 0);
 });
+*/
