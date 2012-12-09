@@ -4,7 +4,7 @@ test('empty string equal to false', function() {
 });
 
 test('empty string is not strictly equal to false', function() {
-	notStrictEqual('', false);
+	notStrictEqual('', false); 
 });
 
 test('!false === true', function() {
