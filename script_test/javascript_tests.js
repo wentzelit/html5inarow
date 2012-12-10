@@ -10,7 +10,7 @@ test('empty string is not strictly equal to false', function() {
 test('!false === true', function() {
 	ok(!false === true);
 });
-
+ asdf
 test('!null === true', function() {
 	ok(!null === true);
 });
