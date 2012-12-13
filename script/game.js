@@ -15,9 +15,12 @@ function Token(tokenType) {
 }
 
 function Game() {
+    this.gridModel = new GridModel();
+    
     this.players = [ new Player(this.tokenTypes.cross),
 	    new Player(this.tokenTypes.circle) ];
-    this.gridModel = new GridModel();
+    
+    this.currentPlayer = this.players[0];
 }
 
 Game.prototype.tokenTypes = {

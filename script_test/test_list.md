@@ -6,7 +6,7 @@ Game logic
 - ~~there is a player object~~
 - ~~A new game has two players~~
 - The player in the game are in a dictionary
-- it's someones turn
+- ~~it's someones turn~~
 
 - ~~A new game has a grid model~~
 - ~~There is a token object~~
@@ -15,20 +15,19 @@ Game logic
 - ~~A new game has a cross token type~~
 - ~~A new game has a circle token type~~
 - ~~Make TokenTypes static~~
-- The token types of the two players cannot be the same
 
 
-Ending the game
+###Ending the game
 - game ends when there are five tokens of the same kind in a row
 - the player that has five tokens in a row wins the game
 
-Placing tokens
+###Placing tokens
 - a token can be added to grid model
 - a token can't be placed on another token
 - a token must be placed next to another token
 - the first token can be placed anywhere
 - a token can be placed on an empty cell
-- after a token is placed the it's the other players turn
+- When a player has placed a token the it's the other players turn
 
 GUI
 ----
