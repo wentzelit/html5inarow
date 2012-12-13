@@ -9,13 +9,14 @@ Game logic
 - it's someones turn
 
 - ~~A new game has a grid model~~
-- There is a token object
-- A new token is either of tokentype circle or cross
-- A new player has one of the token types
-- The token types of the two players cannot be the same
+- ~~There is a token object~~
+- ~~A new token is either of tokentype circle or cross~~
+- ~~A new player has one of the token types~~
 - ~~A new game has a cross token type~~
 - ~~A new game has a circle token type~~
 - ~~Make TokenTypes static~~
+- The token types of the two players cannot be the same
+
 
 Ending the game
 - game ends when there are five tokens of the same kind in a row
