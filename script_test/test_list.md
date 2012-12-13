@@ -16,9 +16,13 @@ Game logic
 - ~~A new game has a cross token type~~
 - ~~A new game has a circle token type~~
 - ~~Make TokenTypes static~~
-- a token can be added to grid model
+
+Ending the game
 - game ends when there are five tokens of the same kind in a row
 - the player that has five tokens in a row wins the game
+
+Placing tokens
+- a token can be added to grid model
 - a token can't be placed on another token
 - a token must be placed next to another token
 - the first token can be placed anywhere
