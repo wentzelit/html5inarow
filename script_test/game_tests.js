@@ -89,3 +89,25 @@ test('When both players has placed their first tokens it\'s player1\'s turn',
 
 	    assert.strictEqual(game.getCurrentPlayer(), player1);
 	});
+
+test('A token can be placed on an empty cell', function() {
+    var game = new Game();
+
+    try {
+	game.addToken(game.getPlayer(0), 0, 0);
+	ok(true);
+    } catch (ex) {
+	ok(false, ex.message);
+    }
+
+});
+
+test('Placing a token on another token throws an exception', function() {
+    var game = new Game();
+    game.addToken(game.getPlayer(0), 0, 0);
+
+    assert.throws(function() {
+	game.addToken(game.getPlayer(1), 0, 0)
+    }, IllegalPlacementException);
+
+});

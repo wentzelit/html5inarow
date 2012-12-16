@@ -8,9 +8,7 @@ Game logic
 - ~~there is a game object~~
 - ~~there is a player object~~
 - ~~A new game has two players~~
-- The player in the game are in a dictionary
 - ~~it's someones turn~~
-
 - ~~A new game has a grid model~~
 - ~~There is a token object~~
 - ~~A new token is either of tokentype circle or cross~~
@@ -19,6 +17,7 @@ Game logic
 - ~~A new game has a circle token type~~
 - ~~Make TokenTypes static~~
 
+- The player in the game are in a dictionary
 
 ###Ending the game
 - game ends when there are five tokens of the same kind in a row
