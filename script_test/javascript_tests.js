@@ -37,5 +37,20 @@ test('new object of type1 is not instanceof type2', function() {
 	
 	var obj1 = new type1();
 	
-	ok(obj1 instanceof type2 === false);
+	assert.ok(obj1 instanceof type2 === false);
+});
+
+function IllegalPlacementException() {
+    
+}
+
+
+test('raises can test for an exception', function() {
+    function x() { throw new IllegalPlacementException() ;}
+    
+    assert.throws(x, IllegalPlacementException);
+});
+
+test('isTrue succeeds on true', function() {
+    assert.isTrue(true);
 });
