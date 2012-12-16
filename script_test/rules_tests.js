@@ -8,7 +8,7 @@ test('A token can\'t be placed on another token', function() {
     
     gridModel.setToken(token, 0, 0);
     
-    equal(rules.okToAddToken(0, 0), false);
+    assert.equal(rules.okToAddToken(0, 0), false);
 });
 
 test('A token can be placed where there is no other token', function() {
@@ -18,5 +18,5 @@ test('A token can be placed where there is no other token', function() {
     var token = new Token(tokenType);
     var rules = new Rules(gridModel);
     
-    ok(rules.okToAddToken(0, 0));
+    assert.ok(rules.okToAddToken(0, 0));
 });

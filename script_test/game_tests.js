@@ -2,43 +2,43 @@ module('Game');
 test('There is a game function', function() {
     var game = new Game();
 
-    ok(game instanceof Game);
+    assert.ok(game instanceof Game);
 });
 
 test('A new game has two players', function() {
     var game = new Game();
 
-    equal(game.players.length, 2);
+    assert.equal(game.players.length, 2);
 });
 
 test('A new game has a grid model', function() {
     var game = new Game();
 
-    ok(game.gridModel instanceof GridModel);
+    assert.ok(game.gridModel instanceof GridModel);
 });
 
 test('A new game has a cross token type', function() {
     var game = new Game();
 
-    ok(game.tokenTypes.cross instanceof TokenType);
+    assert.ok(game.tokenTypes.cross instanceof TokenType);
 });
 
 test('A new game has a circle token type', function() {
     var game = new Game();
 
-    ok(game.tokenTypes.circle instanceof TokenType);
+    assert.ok(game.tokenTypes.circle instanceof TokenType);
 });
 
 test('Player 1 in a new game has the cross token type', function() {
     var game = new Game();
     var player = game.players[0];
-    equal(player.tokenType, game.tokenTypes.cross);
+    assert.equal(player.tokenType, game.tokenTypes.cross);
 });
 
 test('Player 2 in a new game has the circle token type', function() {
     var game = new Game();
     var player = game.players[1];
-    equal(player.tokenType, game.tokenTypes.circle);
+    assert.equal(player.tokenType, game.tokenTypes.circle);
 });
 
 test('A game has a current player', function() {
@@ -61,9 +61,9 @@ test('When it\'s player 1\'s turn player 1 can add a token', function() {
 
     try {
 	game.addToken(player1, 0, 0);
-	ok(true);
+	assert.ok(true);
     } catch (ex) {
-	ok(false, ex.message);
+	assert.ok(false, ex.message);
     }
 });
 
