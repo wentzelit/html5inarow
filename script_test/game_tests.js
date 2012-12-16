@@ -2,55 +2,55 @@ module('Game');
 test('There is a game function', function() {
     var game = new Game();
 
-    ok(game instanceof Game);
+    assert.ok(game instanceof Game);
 });
 
 test('A new game has two players', function() {
     var game = new Game();
 
-    equal(game.players.length, 2);
+    assert.equal(game.players.length, 2);
 });
 
 test('A new game has a grid model', function() {
     var game = new Game();
 
-    ok(game.gridModel instanceof GridModel);
+    assert.ok(game.gridModel instanceof GridModel);
 });
 
 test('A new game has a cross token type', function() {
     var game = new Game();
 
-    ok(game.tokenTypes.cross instanceof TokenType);
+    assert.ok(game.tokenTypes.cross instanceof TokenType);
 });
 
 test('A new game has a circle token type', function() {
     var game = new Game();
 
-    ok(game.tokenTypes.circle instanceof TokenType);
+    assert.ok(game.tokenTypes.circle instanceof TokenType);
 });
 
 test('Player 1 in a new game has the cross token type', function() {
     var game = new Game();
     var player = game.players[0];
-    equal(player.tokenType, game.tokenTypes.cross);
+    assert.equal(player.tokenType, game.tokenTypes.cross);
 });
 
 test('Player 2 in a new game has the circle token type', function() {
     var game = new Game();
     var player = game.players[1];
-    equal(player.tokenType, game.tokenTypes.circle);
+    assert.equal(player.tokenType, game.tokenTypes.circle);
 });
 
 test('A game has a current player', function() {
     var game = new Game();
-    ok(game.currentPlayer instanceof Player);
+    assert.ok(game.getCurrentPlayer() instanceof Player);
 });
 
 test('When it\'s player 1\'s turn player 2 cannot add a token', function() {
     var game = new Game();
     var player2 = game.getPlayer(1);
 
-    raises(function() {
+    throws(function() {
 	game.addToken(player2, 0, 0);
     }, WrongPlayerException);
 });
@@ -59,8 +59,55 @@ test('When it\'s player 1\'s turn player 1 can add a token', function() {
     var game = new Game();
     var player1 = game.getPlayer(0);
 
-    game.addToken(player1, 0, 0);
+    try {
+	game.addToken(player1, 0, 0);
+	assert.ok(true);
+    } catch (ex) {
+	assert.ok(false, ex.message);
+    }
+});
 
-    // We just make sure there's no exception
-    ok(true);
+test('When a player1 has placed his first token it\'s player2\'s turn',
+	function() {
+	    var game = new Game();
+	    var player1 = game.getPlayer(0);
+	    var player2 = game.getPlayer(1);
+
+	    game.addToken(player1, 5, 5);
+
+	    assert.strictEqual(game.getCurrentPlayer(), player2);
+	});
+
+test('When both players has placed their first tokens it\'s player1\'s turn',
+	function() {
+	    var game = new Game();
+	    var player1 = game.getPlayer(0);
+	    var player2 = game.getPlayer(1);
+
+	    game.addToken(player1, 5, 5);
+	    game.addToken(player2, 4, 5);
+
+	    assert.strictEqual(game.getCurrentPlayer(), player1);
+	});
+
+test('A token can be placed on an empty cell', function() {
+    var game = new Game();
+
+    try {
+	game.addToken(game.getPlayer(0), 0, 0);
+	ok(true);
+    } catch (ex) {
+	ok(false, ex.message);
+    }
+
+});
+
+test('Placing a token on another token throws an exception', function() {
+    var game = new Game();
+    game.addToken(game.getPlayer(0), 0, 0);
+
+    assert.throws(function() {
+	game.addToken(game.getPlayer(1), 0, 0)
+    }, IllegalPlacementException);
+
 });

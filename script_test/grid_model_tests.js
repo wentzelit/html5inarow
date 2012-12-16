@@ -6,7 +6,7 @@ test('A token can be added to a grid model', function() {
     
     gridModel.setToken(token, 0, 0);
     
-    equal(gridModel.getToken(0, 0), token);
+    assert.equal(gridModel.getToken(0, 0), token);
     
 });
 
@@ -17,7 +17,7 @@ test('A token added at 1,2 can be retrieved', function() {
     
     gridModel.setToken(token, 1, 2);
     
-    equal(gridModel.getToken(1, 2), token);
+    assert.equal(gridModel.getToken(1, 2), token);
 });
 
 test('After having added some tokens, each can be retrieved', function() {
@@ -34,14 +34,14 @@ test('After having added some tokens, each can be retrieved', function() {
     gridModel.setToken(token3, 0, 2);
     gridModel.setToken(token4, 18, 19);
     
-    equal(gridModel.getToken(0, 0), token1, 'Token 1 was not retrieved');
-    equal(gridModel.getToken(1, 2), token2, 'Token 2 was not retrieved');
-    equal(gridModel.getToken(0, 2), token3, 'Token 3 was not retrieved');
-    equal(gridModel.getToken(18, 19), token4, 'Token 4 was not retrieved');
+    assert.equal(gridModel.getToken(0, 0), token1, 'Token 1 was not retrieved');
+    assert.equal(gridModel.getToken(1, 2), token2, 'Token 2 was not retrieved');
+    assert.equal(gridModel.getToken(0, 2), token3, 'Token 3 was not retrieved');
+    assert.equal(gridModel.getToken(18, 19), token4, 'Token 4 was not retrieved');
 });
 
 test('getToken returns null if there is no token at [x, y]', function() {
     var gridModel = new GridModel();
     
-    equal(gridModel.getToken(3,5), null);
+    assert.equal(gridModel.getToken(3,5), null);
 });
