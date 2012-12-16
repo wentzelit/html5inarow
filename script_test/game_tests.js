@@ -50,7 +50,7 @@ test('When it\'s player 1\'s turn player 2 cannot add a token', function() {
     var game = new Game();
     var player2 = game.getPlayer(1);
 
-    raises(function() {
+    throws(function() {
 	game.addToken(player2, 0, 0);
     }, WrongPlayerException);
 });
@@ -59,8 +59,10 @@ test('When it\'s player 1\'s turn player 1 can add a token', function() {
     var game = new Game();
     var player1 = game.getPlayer(0);
 
-    game.addToken(player1, 0, 0);
-
-    // We just make sure there's no exception
-    ok(true);
+    try {
+	game.addToken(player1, 0, 0);
+	ok(true);
+    } catch (ex) {
+	ok(false, ex.message);
+    }
 });

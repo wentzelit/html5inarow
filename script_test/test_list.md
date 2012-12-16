@@ -26,9 +26,10 @@ Game logic
 - ~~a token can be added to grid model~~
 - ~~a token can't be placed on another token~~
 - ~~let rules be created with a gridModel~~
-- when it's the player's turn he can place the token
-- when it's player 1's turn a token of player 2's token type cannot be placed
+- ~~When it's player 1's turn player 2 cannot add a token~~
+- ~~When it's player 1's turn player 1 can add a token~~
 - When a player has placed a token it's the other players turn
+- Delete Token (TokenType is sufficient)
 
 ###Separate rule sets
 - a token must be placed next to another token
