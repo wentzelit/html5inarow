@@ -32,10 +32,10 @@ test('After having added some tokens, each can be retrieved', function() {
     gridModel.addToken(token1, 0, 0);
     gridModel.addToken(token2, 1, 2);
     gridModel.addToken(token3, 0, 2);
-    gridModel.addToken(token4, -1, 1);
+    gridModel.addToken(token4, 18, 19);
     
     equal(gridModel.getToken(0, 0), token1, 'Token 1 was not retrieved');
     equal(gridModel.getToken(1, 2), token2, 'Token 2 was not retrieved');
     equal(gridModel.getToken(0, 2), token3, 'Token 3 was not retrieved');
-    equal(gridModel.getToken(-1, 1), token4, 'Token 4 was not retrieved');
+    equal(gridModel.getToken(18, 19), token4, 'Token 4 was not retrieved');
 });

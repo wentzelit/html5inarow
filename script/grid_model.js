@@ -4,9 +4,12 @@ function GridModel() {
 
 GridModel.prototype.addToken = function(token, x, y) {
 
-    this.tokens[x, y] = token;
+    if (this.tokens[x] === undefined) {
+	this.tokens[x] = [];
+    };
+    this.tokens[x][y] = token;
 };
 
 GridModel.prototype.getToken = function(x, y) {
-    return this.tokens[x, y];
+    return this.tokens[x][y];
 };
