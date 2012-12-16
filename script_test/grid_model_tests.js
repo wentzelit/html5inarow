@@ -39,3 +39,9 @@ test('After having added some tokens, each can be retrieved', function() {
     equal(gridModel.getToken(0, 2), token3, 'Token 3 was not retrieved');
     equal(gridModel.getToken(18, 19), token4, 'Token 4 was not retrieved');
 });
+
+test('getToken returns null if there is no token at [x, y]', function() {
+    var gridModel = new GridModel();
+    
+    equal(gridModel.getToken(3,5), null);
+});

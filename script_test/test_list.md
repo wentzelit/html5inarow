@@ -22,12 +22,16 @@ Game logic
 - the player that has five tokens in a row wins the game
 
 ###Placing tokens
-- a token can be added to grid model
-- a token can't be placed on another token
+- ~~a token can be placed on an empty cell~~
+- ~~a token can be added to grid model~~
+- ~~a token can't be placed on another token~~
+- ~~let rules be created with a gridModel~~
+- when it's the player's turn he can place the token
+- When a player has placed a token it's the other players turn
+
+###Separate rule sets
 - a token must be placed next to another token
-- the first token can be placed anywhere
-- a token can be placed on an empty cell
-- When a player has placed a token the it's the other players turn
+- the first token in a game can be placed anywhere
 
 GUI
 ----

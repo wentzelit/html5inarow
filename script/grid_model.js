@@ -11,5 +11,10 @@ GridModel.prototype.addToken = function(token, x, y) {
 };
 
 GridModel.prototype.getToken = function(x, y) {
-    return this.tokens[x][y];
+    if (this.tokens[x] instanceof Array) {
+	if (this.tokens[x][y] instanceof Token) {
+	    return this.tokens[x][y];
+	}
+    }
+    return null;
 };
