@@ -43,7 +43,7 @@ test('Player 2 in a new game has the circle token type', function() {
 
 test('A game has a current player', function() {
     var game = new Game();
-    ok(game.currentPlayer instanceof Player);
+    assert.ok(game.getCurrentPlayer() instanceof Player);
 });
 
 test('When it\'s player 1\'s turn player 2 cannot add a token', function() {
@@ -66,3 +66,26 @@ test('When it\'s player 1\'s turn player 1 can add a token', function() {
 	ok(false, ex.message);
     }
 });
+
+test('When a player1 has placed his first token it\'s player2\'s turn',
+	function() {
+	    var game = new Game();
+	    var player1 = game.getPlayer(0);
+	    var player2 = game.getPlayer(1);
+
+	    game.addToken(player1, 5, 5);
+
+	    assert.strictEqual(game.getCurrentPlayer(), player2);
+	});
+
+test('When both players has placed their first tokens it\'s player1\'s turn',
+	function() {
+	    var game = new Game();
+	    var player1 = game.getPlayer(0);
+	    var player2 = game.getPlayer(1);
+
+	    game.addToken(player1, 5, 5);
+	    game.addToken(player2, 4, 5);
+
+	    assert.strictEqual(game.getCurrentPlayer(), player1);
+	});

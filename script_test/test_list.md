@@ -1,5 +1,7 @@
 Tests to write
 ==============
+-Change all tests to assert.[test]
+
 Game logic
 ------
 - ~~there is a game object~~
@@ -28,7 +30,7 @@ Game logic
 - ~~let rules be created with a gridModel~~
 - ~~When it's player 1's turn player 2 cannot add a token~~
 - ~~When it's player 1's turn player 1 can add a token~~
-- When a player has placed a token it's the other players turn
+- ~~When a player has placed a token it's the other players turn~~
 - Delete Token (TokenType is sufficient)
 
 ###Separate rule sets
