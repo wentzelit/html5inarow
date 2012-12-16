@@ -27,6 +27,7 @@ Game logic
 - ~~a token can't be placed on another token~~
 - ~~let rules be created with a gridModel~~
 - when it's the player's turn he can place the token
+- when it's player 1's turn a token of player 2's token type cannot be placed
 - When a player has placed a token it's the other players turn
 
 ###Separate rule sets

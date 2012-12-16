@@ -2,7 +2,7 @@ function GridModel() {
     this.tokens = [];
 }
 
-GridModel.prototype.addToken = function(token, x, y) {
+GridModel.prototype.setToken = function(token, x, y) {
 
     if (this.tokens[x] === undefined) {
 	this.tokens[x] = [];

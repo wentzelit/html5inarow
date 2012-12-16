@@ -6,7 +6,7 @@ test('A token can\'t be placed on another token', function() {
     var token = new Token(tokenType);
     var rules = new Rules(gridModel);
     
-    gridModel.addToken(token, 0, 0);
+    gridModel.setToken(token, 0, 0);
     
     equal(rules.okToAddToken(0, 0), false);
 });
