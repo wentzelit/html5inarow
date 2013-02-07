@@ -1,0 +1,10 @@
+.controlpanel {
+    border: solid black 1px;
+    height: 150px;
+    
+}
+
+.gameboard {
+    border: solid black 1px;
+    display: inline-block;
+}
