@@ -8,6 +8,7 @@ Game logic
 - ~~there is a game object~~
 - ~~there is a player object~~
 - ~~A new game has two players~~
+- The names of the two players are different
 - ~~it's someones turn~~
 - ~~A new game has a grid model~~
 - ~~There is a token object~~
@@ -39,7 +40,7 @@ Game logic
 
 GUI
 ----
-- The names of the two players are different
+- There is a start the game button
 
 Canvas
 ------

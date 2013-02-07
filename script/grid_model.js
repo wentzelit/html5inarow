@@ -1,20 +1,25 @@
 function GridModel() {
-    this.tokens = [];
-}
+    var tokens = [];
 
-GridModel.prototype.setToken = function(token, x, y) {
+    this.setToken = function(token, x, y) {
 
-    if (this.tokens[x] === undefined) {
-	this.tokens[x] = [];
+        if (tokens[x] === undefined) {
+            tokens[x] = [];
+        }
+
+        if (this.getToken(x, y)) {
+            throw new IllegalPlacementException();
+        }
+
+        tokens[x][y] = token;
     };
-    this.tokens[x][y] = token;
-};
 
-GridModel.prototype.getToken = function(x, y) {
-    if (this.tokens[x] instanceof Array) {
-	if (this.tokens[x][y] instanceof Token) {
-	    return this.tokens[x][y];
-	}
-    }
-    return null;
-};
+    this.getToken = function(x, y) {
+        if (tokens[x] instanceof Array) {
+            if (tokens[x][y] instanceof Token) {
+                return tokens[x][y];
+            }
+        }
+        return null;
+    };
+}

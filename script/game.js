@@ -1,8 +1,7 @@
 function Game() {
     this.gridModel = new GridModel();
 
-    this.players = [ new Player(this.tokenTypes.cross),
-	    new Player(this.tokenTypes.circle) ];
+    this.players = [new Player(this.tokenTypes.cross), new Player(this.tokenTypes.circle)];
 
     this.currentPlayer = 0;
 }
@@ -23,13 +22,13 @@ Game.prototype.getCurrentPlayer = function() {
 Game.prototype.addToken = function(player, x, y) {
 
     if (player === this.getCurrentPlayer()) {
-	this.gridModel.setToken(new Token(player.tokenType), x, y);
-	this.changeToNextCurrentPlayer();
+        this.gridModel.setToken(new Token(player.tokenType), x, y);
+        this.changeToNextCurrentPlayer();
     } else {
-	throw new WrongPlayerException();
+        throw new WrongPlayerException();
     }
 };
 
 Game.prototype.changeToNextCurrentPlayer = function() {
-    this.currentPlayer ^= 1;
+    this.currentPlayer ^=1;
 };
