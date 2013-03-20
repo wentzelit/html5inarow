@@ -1,3 +1,7 @@
+canvas {
+    display: block;
+}
+
 .controlpanel {
     border: solid black 1px;
     height: 150px;
