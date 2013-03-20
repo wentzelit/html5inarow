@@ -17,7 +17,7 @@
             context.strokeStyle = '#000000';
 
             var i, x, y;
-            for ( i = 1; i < count; i++) {
+            for ( i = 0; i <= count; i++) {
                 x = i * cellWidth;
 
                 context.moveTo(x, 0);
@@ -25,7 +25,7 @@
                 context.stroke();
             }
 
-            for ( i = 1; i < count; i++) {
+            for ( i = 0; i <= count; i++) {
                 y = i * cellHeight;
 
                 context.moveTo(0, y);
