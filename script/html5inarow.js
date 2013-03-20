@@ -74,9 +74,9 @@
 
         function getCellFromMouseCoordinates(mouseX, mouseY) {
             var fullCellsX = Math.floor(mouseX / cellWidth);
-            var reminderX = mouseX % cellWidth;
+            var remainderX = mouseX % cellWidth;
             var fullCellsY = Math.floor(mouseY / cellHeight);
-            var reminderY = mouseY % cellHeight;
+            var remainderY = mouseY % cellHeight;
 
             return {
                 x : fullCellsX,
