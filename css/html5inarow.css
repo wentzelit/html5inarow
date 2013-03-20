@@ -1,8 +1,5 @@
 canvas {
     display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
 }
 
 .controlpanel {
@@ -14,6 +11,6 @@ canvas {
 .gameboard {
     /*border: solid black 1px;*/
     display: inline-block;
-    height: 400px;
-    width: 400px;
+    vertical-align: bottom
+    margin-bottom: 5px
 }
