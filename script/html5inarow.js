@@ -83,8 +83,8 @@
                 y : fullCellsY
             }
             //return {
-            //    x : reminderX === 0 ? fullCellsX : fullCellsX + 1,
-            //    y : reminderY === 0 ? fullCellsY : fullCellsY + 1
+            //    x : remainderX === 0 ? fullCellsX : fullCellsX + 1,
+            //    y : remainderY === 0 ? fullCellsY : fullCellsY + 1
             //}
         }
 
