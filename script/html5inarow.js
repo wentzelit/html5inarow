@@ -39,10 +39,10 @@
             var x = event.pageX - $(this).offset().left;
             var y = event.pageY - $(this).offset().top;
 
-            console.log('clicked x: ' + x + ' y: ' + y);
+            console.log('current coordinates: ' + x + ' y: ' + y);
 
             var cell = getCellFromMouseCoordinates(x, y);
-            console.log('clicked cell: ' + cell.x + ', ' + cell.y);
+            console.log('current cell at: ' + cell.x + ', ' + cell.y);
 
             if (!selectedCell || selectedCell.x !== cell.x || selectedCell.y !== cell.y) {
 
@@ -59,10 +59,10 @@
             var x = event.pageX - $(this).offset().left;
             var y = event.pageY - $(this).offset().top;
 
-            console.log('clicked x: ' + x + ' y: ' + y);
+            console.log('current coordinates: ' + x + ' y: ' + y);
 
             var cell = getCellFromMouseCoordinates(x, y);
-            console.log('clicked cell: ' + cell.x + ', ' + cell.y);
+            console.log('current cell at: ' + cell.x + ', ' + cell.y);
 
             if (selectedCell) {
 
