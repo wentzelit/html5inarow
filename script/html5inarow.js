@@ -6,31 +6,43 @@
     }
 
     function Html5InARow(element, options) {
-        var cellWidth, cellHeight, context;
+        var cellWidth, cellHeight, gridContext, highlightContext, tokenContext;
         var selectedCell;
 
-        function drawGrid(width, height, count) {
+        function drawLine(context, start, end) {
+            context.moveTo(start.x, start.y);
+            context.lineTo(end.x, end.y);
+            context.stroke();
+        }
+
+        function drawGrid(context, width, height, count) {
             cellHeight = height / count;
             cellWidth = width / count;
 
             context.lineWidth = 1;
             context.strokeStyle = '#000000';
 
-            var i, x, y;
+            var i, x, y, pixelMod;
             for ( i = 0; i <= count; i++) {
                 x = i * cellWidth;
 
-                context.moveTo(x, 0);
-                context.lineTo(x, height);
-                context.stroke();
+                pixelMod = i === 0 || i === count ? 0 : 0.5;
+                
+                drawLine(context,
+                    { x: x + pixelMod, y: 0}, 
+                    { x: x + pixelMod, y: height }
+                );
             }
 
             for ( i = 0; i <= count; i++) {
                 y = i * cellHeight;
 
-                context.moveTo(0, y);
-                context.lineTo(width, y);
-                context.stroke();
+                pixelMod = i === 0 || i === count ? 0 : 0.5;
+                
+                drawLine(context,
+                    { x: 0, y: y + pixelMod }, 
+                    { x: width, y: y + pixelMod }
+                );
             }
         }
 
@@ -39,34 +51,41 @@
             var x = event.pageX - $(this).offset().left;
             var y = event.pageY - $(this).offset().top;
 
-            console.log('current coordinates: ' + x + ' y: ' + y);
+            //console.log('current coordinates: ' + x + ' y: ' + y);
 
             var cell = getCellFromMouseCoordinates(x, y);
-            console.log('current cell at: ' + cell.x + ', ' + cell.y);
+            //console.log('current cell at: ' + cell.x + ', ' + cell.y);
 
             if (!selectedCell || selectedCell.x !== cell.x || selectedCell.y !== cell.y) {
 
                 if (selectedCell) {
-                    clearCell(selectedCell);
+                    clearCell(highlightContext, selectedCell);
                 }
 
-                fillCell(cell);
+                fillCell(highlightContext, cell);
                 selectedCell = cell;
             }
         }
+
+        function getMouseCoordinatesFromEvent(event) {
+            var x = event.pageX,// - $(this).offset().left,
+            y = event.pageY;// - $(this).offset().top;
+
+            return { x: x, y: y};
+        } 
 
         function gameBoardMouseLeaveHandler(event) {
             var x = event.pageX - $(this).offset().left;
             var y = event.pageY - $(this).offset().top;
 
-            console.log('current coordinates: ' + x + ' y: ' + y);
+            //console.log('current coordinates: ' + x + ' y: ' + y);
 
             var cell = getCellFromMouseCoordinates(x, y);
-            console.log('current cell at: ' + cell.x + ', ' + cell.y);
+            //console.log('current cell at: ' + cell.x + ', ' + cell.y);
 
             if (selectedCell) {
 
-                clearCell(selectedCell);
+                clearCell(hightlightContext, selectedCell);
 
                 selectedCell = null;
             }
@@ -88,38 +107,104 @@
             //}
         }
 
-        function clearCell(cell) {
-            context.clearRect(cell.x * cellWidth, cell.y * cellHeight, cellWidth, cellHeight);
-
-            context.strokeRect(cell.x * cellWidth, cell.y * cellHeight, cellWidth, cellHeight);
+        function drawCross(context, cell) {
+            var x = cell.x * cellWidth + cellWidth / 2,
+                y = cell.y * cellHeight + cellHeight / 2;
+            
+            context.textAlign = 'center';
+            context.textBaseline = 'middle';
+            context.font = 'bold ' + cellHeight + 'pt sans-serif';
+            context.fillText('X', x, y);
+            
         }
 
-        function fillCell(cell) {
+        function drawCircle(context, cell) {
+            var x = cell.x * cellWidth + cellWidth / 2,
+                y = cell.y * cellHeight + cellHeight / 2;
+            
+            context.beginPath();    
+            context.arc(x, y, cellWidth / 2.5, 0, Math.PI * 2, true);
+            context.stroke();
+            //console.log('drawCircle');
+            
+        }
+
+        function drawToken(cell, token) {
+            if (token === 'cross') {
+                drawCross(tokenContext, cell);
+            }
+            else {
+                drawCircle(tokenContext, cell);
+            }
+        }
+        
+        var token = 'cross';
+        function gameBoardMouseClickHandler(event) {
+            var coords = getMouseCoordinatesFromEvent(event);
+            
+            var cell = getCellFromMouseCoordinates(coords.x, coords.y);
+            
+            console.log('clicked x: ' + cell.x + ', y: ' + cell.y);
+            drawToken(cell, token);
+            
+            token = token === 'cross' ? 'circle' : 'cross';
+        }
+
+        function clearCell(context, cell) {
+            context.clearRect(cell.x * cellWidth,
+                cell.y * cellHeight,
+                cellWidth,
+                cellHeight);
+
+            //context.strokeRect(cell.x * cellWidth, cell.y * cellHeight, cellWidth, cellHeight);
+        }
+
+        function fillCell(context, cell) {
 
             context.fillStyle = '#aaaaff';
 
-            context.fillRect(cell.x * cellWidth, cell.y * cellHeight, cellWidth, cellHeight);
+            context.fillRect(
+                cell.x * cellWidth,
+                cell.y * cellHeight,
+                cellWidth, 
+                cellHeight);
 
-            context.strokeRect(cell.x * cellWidth, cell.y * cellHeight, cellWidth, cellHeight);
+            //context.strokeRect(cell.x * cellWidth, cell.y * cellHeight, cellWidth, cellHeight);
         }
 
         function initGame(element) {
-            var gameBoard, controlPanel, canvas;
+            var gameBoard, controlPanel, gridCanvas, highlightCanvas,
+            tokenCanvas;
 
-            gameBoard = $('<div></div>');
+            gameBoard = document.createElement('div');
 
-            gameBoard.addClass('gameboard');
+            gameBoard.className = 'gameboard';
 
-            canvas = $('<canvas></canvas>');
-            canvas.attr('width', options.width);
-            canvas.attr('height', options.height);
-            canvas.on('mousemove', gameBoardMouseMoveHandler);
-            canvas.on('mouseleave', gameBoardMouseLeaveHandler);
-
-            gameBoard.append(canvas);
-
-            context = canvas[0].getContext('2d');
-            drawGrid(options.width, options.height, options.cellCount);
+            gridCanvas = document.createElement('canvas'); //$('<canvas></canvas>');
+            gridCanvas.width = options.width;
+            gridCanvas.height = options.height;
+            gridCanvas.style.position = 'absolute';
+            
+            highlightCanvas = document.createElement('canvas');
+            highlightCanvas.width = options.width;
+            highlightCanvas.height = options.height;
+            highlightCanvas.style.position = 'absolute';
+            
+            tokenCanvas = gridCanvas.cloneNode();
+            
+            tokenCanvas.addEventListener('mousemove', gameBoardMouseMoveHandler);
+            tokenCanvas.addEventListener('mouseleave', gameBoardMouseLeaveHandler);
+            
+            tokenCanvas.addEventListener('click', gameBoardMouseClickHandler);
+            
+            gameBoard.appendChild(highlightCanvas);
+            gameBoard.appendChild(gridCanvas);
+            gameBoard.appendChild(tokenCanvas);
+            
+            gridContext = gridCanvas.getContext('2d');
+            highlightContext = highlightCanvas.getContext('2d');
+            tokenContext = tokenCanvas.getContext('2d');
+            drawGrid(gridContext, options.width, options.height, options.cellCount);
 
             controlPanel = $('<div>Control Panel</div>');
 
@@ -128,7 +213,7 @@
             element.append(gameBoard);
             element.append(controlPanel);
 
-            console.log(gameBoard.outerWidth());
+            //console.log(gameBoard.outerWidth());
         }
 
         initGame(element);
