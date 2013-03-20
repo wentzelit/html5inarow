@@ -179,6 +179,8 @@
             gameBoard = document.createElement('div');
 
             gameBoard.className = 'gameboard';
+            gameBoard.style.height = options.height + 'px';
+            gameBoard.style.width = options.width + 'px';
 
             gridCanvas = document.createElement('canvas'); //$('<canvas></canvas>');
             gridCanvas.width = options.width;
