@@ -11,4 +11,6 @@ canvas {
 .gameboard {
     border: solid black 1px;
     display: inline-block;
+    vertical-align: bottom
+    margin-bottom: 5px
 }
