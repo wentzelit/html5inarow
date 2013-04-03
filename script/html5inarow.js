@@ -3,16 +3,38 @@
         height : 200,
         width : 200,
         cellCount : 10
-    }
+    };
 
     function Html5InARow(element, options) {
-        var cellWidth, cellHeight, gridContext, highlightContext, tokenContext;
-        var selectedCell;
+        var cellWidth, cellHeight, gridContext, highlightContext, tokenContext,
+          selectedCell;
 
         function drawLine(context, start, end) {
             context.moveTo(start.x, start.y);
             context.lineTo(end.x, end.y);
             context.stroke();
+        }
+        
+        function clearCell(context, cell) {
+            context.clearRect(cell.x * cellWidth,
+                cell.y * cellHeight,
+                cellWidth,
+                cellHeight);
+
+            //context.strokeRect(cell.x * cellWidth, cell.y * cellHeight, cellWidth, cellHeight);
+        }
+        
+        function fillCell(context, cell) {
+
+            context.fillStyle = '#aaaaff';
+
+            context.fillRect(
+                cell.x * cellWidth,
+                cell.y * cellHeight,
+                cellWidth, 
+                cellHeight);
+
+            //context.strokeRect(cell.x * cellWidth, cell.y * cellHeight, cellWidth, cellHeight);
         }
 
         function drawGrid(context, width, height, count) {
@@ -23,7 +45,7 @@
             context.strokeStyle = '#000000';
 
             var i, x, y, pixelMod;
-            for ( i = 0; i <= count; i++) {
+            for ( i = 0; i <= count; i = i + 1 ) {
                 x = i * cellWidth;
 
                 pixelMod = i === 0 || i === count ? 0 : 0.5;
@@ -34,7 +56,7 @@
                 );
             }
 
-            for ( i = 0; i <= count; i++) {
+            for ( i = 0; i <= count; i = i + 1 ) {
                 y = i * cellHeight;
 
                 pixelMod = i === 0 || i === count ? 0 : 0.5;
@@ -46,14 +68,30 @@
             }
         }
 
+        function getMouseCoordinatesFromEvent(event) {
+            var x = event.pageX,// - $(this).offset().left,
+            y = event.pageY;// - $(this).offset().top;
+
+            return { x: x, y: y};
+        } 
+
+        function getCellFromMouseCoordinates(mouseX, mouseY) {
+            var fullCellsX = Math.floor(mouseX / cellWidth),
+                remainderX = mouseX % cellWidth,
+                fullCellsY = Math.floor(mouseY / cellHeight),
+                remainderY = mouseY % cellHeight;
+
+            return {
+                x : fullCellsX,
+                y : fullCellsY
+            };
+        }
+
         function gameBoardMouseMoveHandler(event) {
 
-            var x = event.pageX - $(this).offset().left;
-            var y = event.pageY - $(this).offset().top;
-
-            //console.log('current coordinates: ' + x + ' y: ' + y);
-
-            var cell = getCellFromMouseCoordinates(x, y);
+            var x = event.pageX - $(this).offset().left,
+                y = event.pageY - $(this).offset().top,
+                cell = getCellFromMouseCoordinates(x, y);
             //console.log('current cell at: ' + cell.x + ', ' + cell.y);
 
             if (!selectedCell || selectedCell.x !== cell.x || selectedCell.y !== cell.y) {
@@ -67,45 +105,19 @@
             }
         }
 
-        function getMouseCoordinatesFromEvent(event) {
-            var x = event.pageX,// - $(this).offset().left,
-            y = event.pageY;// - $(this).offset().top;
-
-            return { x: x, y: y};
-        } 
-
+        
         function gameBoardMouseLeaveHandler(event) {
-            var x = event.pageX - $(this).offset().left;
-            var y = event.pageY - $(this).offset().top;
+            var x = event.pageX - $(this).offset().left,
+                y = event.pageY - $(this).offset().top,
+                cell = getCellFromMouseCoordinates(x, y);
 
-            //console.log('current coordinates: ' + x + ' y: ' + y);
-
-            var cell = getCellFromMouseCoordinates(x, y);
-            //console.log('current cell at: ' + cell.x + ', ' + cell.y);
 
             if (selectedCell) {
-
                 clearCell(hightlightContext, selectedCell);
-
                 selectedCell = null;
             }
         }
 
-        function getCellFromMouseCoordinates(mouseX, mouseY) {
-            var fullCellsX = Math.floor(mouseX / cellWidth);
-            var remainderX = mouseX % cellWidth;
-            var fullCellsY = Math.floor(mouseY / cellHeight);
-            var remainderY = mouseY % cellHeight;
-
-            return {
-                x : fullCellsX,
-                y : fullCellsY
-            }
-            //return {
-            //    x : remainderX === 0 ? fullCellsX : fullCellsX + 1,
-            //    y : remainderY === 0 ? fullCellsY : fullCellsY + 1
-            //}
-        }
 
         function drawCross(context, cell) {
             var x = cell.x * cellWidth + cellWidth / 2,
@@ -140,36 +152,13 @@
         
         var token = 'cross';
         function gameBoardMouseClickHandler(event) {
-            var coords = getMouseCoordinatesFromEvent(event);
-            
-            var cell = getCellFromMouseCoordinates(coords.x, coords.y);
+            var coords = getMouseCoordinatesFromEvent(event),
+                cell = getCellFromMouseCoordinates(coords.x, coords.y);
             
             console.log('clicked x: ' + cell.x + ', y: ' + cell.y);
             drawToken(cell, token);
             
             token = token === 'cross' ? 'circle' : 'cross';
-        }
-
-        function clearCell(context, cell) {
-            context.clearRect(cell.x * cellWidth,
-                cell.y * cellHeight,
-                cellWidth,
-                cellHeight);
-
-            //context.strokeRect(cell.x * cellWidth, cell.y * cellHeight, cellWidth, cellHeight);
-        }
-
-        function fillCell(context, cell) {
-
-            context.fillStyle = '#aaaaff';
-
-            context.fillRect(
-                cell.x * cellWidth,
-                cell.y * cellHeight,
-                cellWidth, 
-                cellHeight);
-
-            //context.strokeRect(cell.x * cellWidth, cell.y * cellHeight, cellWidth, cellHeight);
         }
 
         function initGame(element) {
