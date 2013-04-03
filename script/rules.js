@@ -7,4 +7,4 @@ Rules.prototype.okToAddToken = function(x, y) {
 	return false;
     }
     return true;
-}
+};
